@@ -43,7 +43,7 @@ class RecipeLoader implements PartCreateHandler {
         method.setAccessible(true);
         var recipe = (Recipe) method.invoke(part);
         handleIncludeForSmoker(addRecipe, plugin, recipe);
-        handleIncludeForSmoker(addRecipe, plugin, recipe);
+        handleIncludeForBlastFurnace(addRecipe, plugin, recipe);
         plugin.getServer().addRecipe(recipe);
         logger.info("Added recipe.");
       } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException exception) {
