@@ -9,5 +9,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AddRecipe {
   boolean includeForSmoker() default false;
-  int divideTime() default 2;
+  boolean includeForBlastFurnace() default false;
+  int divideTimeForSmoker() default 2;
+  int divideTimeForBlastFurnace() default 2;
 }

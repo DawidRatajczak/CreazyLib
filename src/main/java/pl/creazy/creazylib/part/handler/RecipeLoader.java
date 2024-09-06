@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.BlastingRecipe;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.Recipe;
 
@@ -41,23 +42,43 @@ class RecipeLoader implements PartCreateHandler {
       try {
         method.setAccessible(true);
         var recipe = (Recipe) method.invoke(part);
-        if (addRecipe.includeForSmoker() && recipe instanceof FurnaceRecipe furnaceRecipe) {
-          var key = new NamespacedKey(plugin, furnaceRecipe.getKey().getNamespace().concat("_for_smoker"));
-          var smokerRecipe = new SmokingRecipe(
-              key,
-              furnaceRecipe.getResult(),
-              furnaceRecipe.getInputChoice(),
-              furnaceRecipe.getExperience(),
-              furnaceRecipe.getCookingTime() / addRecipe.divideTime()
-          );
-          plugin.getServer().addRecipe(smokerRecipe);
-          logger.info("Added smoker recipe created from furnace recipe.");
-        }
+        handleIncludeForSmoker(addRecipe, plugin, recipe);
+        handleIncludeForSmoker(addRecipe, plugin, recipe);
         plugin.getServer().addRecipe(recipe);
         logger.info("Added recipe.");
       } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException exception) {
         throw new RuntimeException("Failed to add recipe", exception);
       }
+    }
+  }
+
+  private void handleIncludeForSmoker(AddRecipe addRecipe, CreazyPlugin plugin, Recipe recipe) {
+    if (addRecipe.includeForSmoker() && recipe instanceof FurnaceRecipe furnaceRecipe) {
+      var key = new NamespacedKey(plugin, furnaceRecipe.getKey().getKey().concat("_for_smoker"));
+      var smokerRecipe = new SmokingRecipe(
+          key,
+          furnaceRecipe.getResult(),
+          furnaceRecipe.getInputChoice(),
+          furnaceRecipe.getExperience(),
+          furnaceRecipe.getCookingTime() / addRecipe.divideTimeForSmoker()
+      );
+      plugin.getServer().addRecipe(smokerRecipe);
+      logger.info("Added smoker recipe created from furnace recipe.");
+    }
+  }
+
+  private void handleIncludeForBlastFurnace(AddRecipe addRecipe, CreazyPlugin plugin, Recipe recipe) {
+    if (addRecipe.includeForBlastFurnace() && recipe instanceof FurnaceRecipe furnaceRecipe) {
+      var key = new NamespacedKey(plugin, furnaceRecipe.getKey().getKey().concat("_for_blast_furnace"));
+      var blastFurnaceRecipe = new BlastingRecipe(
+          key,
+          furnaceRecipe.getResult(),
+          furnaceRecipe.getInputChoice(),
+          furnaceRecipe.getExperience(),
+          furnaceRecipe.getCookingTime() / addRecipe.divideTimeForBlastFurnace()
+      );
+      plugin.getServer().addRecipe(blastFurnaceRecipe);
+      logger.info("Added blast furnace recipe created from furnace recipe.");
     }
   }
 }
