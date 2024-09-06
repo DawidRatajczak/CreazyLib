@@ -4,4 +4,6 @@ import org.bukkit.event.Event;
 import pl.creazy.creazylib.action.Action;
 
 public interface BlockAction<T extends Event> extends Action<T> {
+  @Override
+  void handle(T event);
 }

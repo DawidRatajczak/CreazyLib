@@ -6,8 +6,8 @@ import org.jetbrains.annotations.NotNull;
 import pl.creazy.creazylib.CreazyLib;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
 
-public final class Keys {
-  private Keys() {
+public final class Key {
+  private Key() {
   }
 
   @NotNull

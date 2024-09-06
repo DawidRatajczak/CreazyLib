@@ -5,6 +5,7 @@ import static java.lang.String.format;
 import java.util.stream.Collectors;
 import org.jetbrains.annotations.NotNull;
 import lombok.AllArgsConstructor;
+import pl.creazy.creazylib.part.handler.ConfigFileLoader;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
 import pl.creazy.creazylib.plugin.constraints.Plugin;
 
@@ -18,6 +19,7 @@ public class PartLoader {
     var creator = new PartCreator();
     var connector = new PartConnector(partManager);
     var onEnableInvoker = new OnEnableInvoker(partManager);
+    var configFileLoader = new ConfigFileLoader();
     var createdParts = plugin.getPartTypes().stream()
         .map(creator::createPart)
         .collect(Collectors.toList());
@@ -27,6 +29,7 @@ public class PartLoader {
     }
     createdParts.forEach(partManager::addPart);
     connector.connectParts(createdParts);
+    createdParts.forEach(part -> configFileLoader.onPartCreate(part, partManager, plugin));
     createdParts.forEach(onEnableInvoker::invokeAllMethods);
 
     partManager.getPartCreateHandlers().forEach(handler -> {

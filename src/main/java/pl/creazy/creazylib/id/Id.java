@@ -18,7 +18,7 @@ import pl.creazy.creazylib.CreazyLib;
 import pl.creazy.creazylib.data.persistence.nbt.NbtEditor;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
 import pl.creazy.creazylib.util.item.Items;
-import pl.creazy.creazylib.util.key.Keys;
+import pl.creazy.creazylib.util.key.Key;
 
 @Getter
 @ToString
@@ -88,6 +88,6 @@ public class Id implements Serializable {
 
   @NotNull
   private static NamespacedKey createKey() {
-    return Keys.create(NAMESPACE, CreazyLib.class);
+    return Key.create(NAMESPACE, CreazyLib.class);
   }
 }

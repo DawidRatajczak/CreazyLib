@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
@@ -13,17 +14,20 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ColorableArmorMeta;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.FoodComponent;
 import org.bukkit.inventory.meta.components.ToolComponent;
 import org.jetbrains.annotations.NotNull;
 
+import org.jetbrains.annotations.Nullable;
 import pl.creazy.creazylib.CreazyLib;
 import pl.creazy.creazylib.data.persistence.nbt.NbtEditor;
 import pl.creazy.creazylib.id.Id;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
-import pl.creazy.creazylib.util.key.Keys;
+import pl.creazy.creazylib.util.key.Key;
 import pl.creazy.creazylib.util.text.Text;
 import static pl.creazy.creazylib.util.text.Text.color;
 
@@ -42,9 +46,23 @@ public class ItemBuilder {
     return this;
   }
 
+  public @NotNull ItemBuilder setDamage(int damage) {
+    if (meta instanceof Damageable damageable) {
+      damageable.setDamage(damage);
+    }
+    return this;
+  }
+
   @NotNull
   public ItemBuilder setAmount(int amount) {
     item.setAmount(amount);
+    return this;
+  }
+
+  public @NotNull ItemBuilder setColor(@NotNull Color color) {
+    if (meta instanceof ColorableArmorMeta colorableArmorMeta) {
+      colorableArmorMeta.setColor(color);
+    }
     return this;
   }
 
@@ -52,6 +70,10 @@ public class ItemBuilder {
   public ItemBuilder setDisplayName(@NotNull String name) {
     meta.setDisplayName(color(name));
     return this;
+  }
+
+  public @NotNull ItemBuilder setDisplayName(@NotNull String name, @NotNull String color) {
+    return setDisplayName(color.concat(name));
   }
 
   @NotNull
@@ -73,7 +95,7 @@ public class ItemBuilder {
   }
 
   @NotNull
-  public ItemBuilder setCustomModelData(@NotNull Integer data) {
+  public ItemBuilder setCustomModelData(@Nullable Integer data) {
     meta.setCustomModelData(data);
     return this;
   }
@@ -86,13 +108,13 @@ public class ItemBuilder {
 
   @NotNull
   public ItemBuilder setNbtData(@NotNull String key, @NotNull Object value) {
-    NbtEditor.of(item, meta).set(Keys.create(key, CreazyLib.class), value);
+    NbtEditor.of(item, meta).set(Key.create(key, CreazyLib.class), value);
     return this;
   }
 
   @NotNull
   public ItemBuilder setNbtData(@NotNull String key, @NotNull Class<? extends CreazyPlugin> type, @NotNull Object value) {
-    NbtEditor.of(item, meta).set(Keys.create(key, type), value);
+    NbtEditor.of(item, meta).set(Key.create(key, type), value);
     return this;
   }
 

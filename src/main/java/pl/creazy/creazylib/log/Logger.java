@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.creazy.creazylib.CreazyLib;
 import pl.creazy.creazylib.part.constraints.Part;
+import pl.creazy.creazylib.util.text.Text;
 
 @Part
 public class Logger {
@@ -52,6 +53,6 @@ public class Logger {
     if (disabledLogTypes.contains(type)) {
       return;
     }
-    plugin.getServer().getConsoleSender().sendMessage(format("[%s] %s", type.name(), String.valueOf(message)));
+    plugin.getServer().getConsoleSender().sendMessage(Text.color(format("[%s] %s", type.name(), String.valueOf(message))));
   }
 }
