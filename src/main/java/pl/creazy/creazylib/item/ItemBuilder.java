@@ -32,6 +32,8 @@ import pl.creazy.creazylib.util.text.Text;
 import static pl.creazy.creazylib.util.text.Text.color;
 
 public class ItemBuilder {
+  private static final String UNIQUE_PREFIX = "unique_";
+
   private final ItemStack item;
   private final ItemMeta meta;
 
@@ -98,6 +100,10 @@ public class ItemBuilder {
   public ItemBuilder setCustomModelData(@Nullable Integer data) {
     meta.setCustomModelData(data);
     return this;
+  }
+
+  public @NotNull ItemBuilder makeUnique(@NotNull String uniqueString, Class<? extends CreazyPlugin> type) {
+    return setNbtData(Key.create(UNIQUE_PREFIX.concat(uniqueString), type), UNIQUE_PREFIX.concat(uniqueString));
   }
 
   @NotNull
