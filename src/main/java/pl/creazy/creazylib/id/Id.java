@@ -1,6 +1,7 @@
 package pl.creazy.creazylib.id;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -8,6 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.checkerframework.checker.units.qual.N;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,6 +34,18 @@ public class Id implements Serializable {
   public Id(@NotNull String id, @NotNull Class<? extends CreazyPlugin> type) {
     this.id = id;
     pluginClassName = type.getName();
+  }
+
+  public static @NotNull Optional<Id> find(@Nullable ItemStack item) {
+    return Optional.ofNullable(get(item));
+  }
+
+  public static @NotNull Optional<Id> find(@Nullable Entity entity) {
+    return Optional.ofNullable(get(entity));
+  }
+
+  public static @NotNull Optional<Id> find(@Nullable Block block) {
+    return Optional.ofNullable(get(block));
   }
 
   public static @Nullable Id get(@Nullable ItemStack item) {

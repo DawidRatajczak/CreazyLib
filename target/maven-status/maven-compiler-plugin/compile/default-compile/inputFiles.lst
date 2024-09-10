@@ -51,6 +51,7 @@
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/item/EnchantedBook.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/item/ItemBuilder.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/item/ItemManager.java
+/home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/item/ItemNbtTag.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/item/action/ItemAction.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/item/action/ItemActionManager.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/item/action/ItemBlockBreakAction.java

@@ -1,7 +1,9 @@
 package pl.creazy.creazylib.item;
 
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -84,6 +86,11 @@ public class ItemBuilder {
     return this;
   }
 
+  public @NotNull ItemBuilder setLore(List<String> lore) {
+    meta.setLore(createLore(lore.toArray(String[]::new)));
+    return this;
+  }
+
   @NotNull
   public ItemBuilder addLore(@NotNull String... lore) {
     if (meta.getLore() == null) {
@@ -100,6 +107,19 @@ public class ItemBuilder {
   public ItemBuilder setCustomModelData(@Nullable Integer data) {
     meta.setCustomModelData(data);
     return this;
+  }
+
+  public @NotNull ItemBuilder edit(@NotNull BiConsumer<ItemStack, ItemMeta> biConsumer) {
+    biConsumer.accept(item, meta);
+    return this;
+  }
+
+  public @NotNull ItemBuilder setItemNbtTag(@NotNull Supplier<ItemNbtTag> supplier) {
+    return setItemNbtTag(supplier.get());
+  }
+
+  public @NotNull ItemBuilder setItemNbtTag(@NotNull ItemNbtTag tag) {
+    return edit(tag::save);
   }
 
   public @NotNull ItemBuilder makeUnique(@NotNull String uniqueString, Class<? extends CreazyPlugin> type) {

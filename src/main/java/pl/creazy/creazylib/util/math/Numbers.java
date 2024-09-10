@@ -54,6 +54,9 @@ public class Numbers {
   }
 
   public static boolean percent(double percent) {
+    if (percent >= 100D) {
+      return true;
+    }
     return randomDouble(0D, 100D) <= percent;
   }
 }

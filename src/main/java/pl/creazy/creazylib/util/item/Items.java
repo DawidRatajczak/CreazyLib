@@ -22,6 +22,18 @@ public class Items {
     return item.getItemMeta().getEnchantLevel(enchant);
   }
 
+  public static @Nullable ItemStack getRod(@NotNull Player player) {
+    var main = player.getInventory().getItemInMainHand();
+    if (main.getType() == Material.FISHING_ROD) {
+      return main;
+    }
+    var off = player.getInventory().getItemInOffHand();
+    if (off.getType() == Material.FISHING_ROD) {
+      return off;
+    }
+    return null;
+  }
+
   public static boolean isFish(@NotNull ItemStack item) {
     var type = item.getType();
     return type == Material.SALMON || type == Material.COD || type == Material.TROPICAL_FISH;

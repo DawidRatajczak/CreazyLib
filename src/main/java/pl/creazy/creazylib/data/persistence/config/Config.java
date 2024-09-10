@@ -264,6 +264,13 @@ public abstract class Config {
     return this;
   }
 
+  public Config setIfNull(String path, Object value) {
+    if (getYamlConfig().get(path, null) == null) {
+      return set(path, value);
+    }
+    return this;
+  }
+
   public void setComments(String path, List<String> comments) {
     getYamlConfig().setComments(path, comments);
   }
