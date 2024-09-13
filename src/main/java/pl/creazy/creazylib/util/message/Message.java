@@ -1,31 +1,38 @@
 package pl.creazy.creazylib.util.message;
 
-import static pl.creazy.creazylib.util.text.Text.color;
-
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
+import static pl.creazy.creazylib.util.text.Text.color;
 
 public interface Message {
-  static void sendChat(CommandSender sender, String message) {
+  static void sendChat(@NotNull CommandSender sender, @Nullable String message) {
+    if (message == null) {
+      return;
+    }
     Message.create(message).sendChat(sender);
   }
 
-  static void sendServer(String message) {
+  static void sendServer(@Nullable String message) {
+    if (message == null) {
+      return;
+    }
     Message.create(message).sendServer();
   }
 
-  static void sendActionBar(Player player, String message) {
+  static void sendActionBar(@NotNull Player player, @NotNull String message) {
     Message.create(message).sendActionBar(player);
   }
 
-  static Message create(String message) {
+  static Message create(@NotNull String message) {
     return new Message() {
       @Override
-      public void sendChat(CommandSender sender) {
+      public void sendChat(@NotNull CommandSender sender) {
         sender.sendMessage(color(message));
       }
 
@@ -35,7 +42,7 @@ public interface Message {
       }
 
       @Override
-      public void sendActionBar(Player sender) {
+      public void sendActionBar(@NotNull Player sender) {
         sender.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(color(message)));
       }
 
@@ -48,11 +55,11 @@ public interface Message {
 
   String getContent();
 
-  void sendChat(CommandSender sender);
+  void sendChat(@NotNull CommandSender sender);
 
   void sendServer();
 
-  void sendActionBar(Player sender);
+  void sendActionBar(@NotNull Player sender);
 
   default void sendChat() {
     Bukkit.getOnlinePlayers().forEach(this::sendChat);

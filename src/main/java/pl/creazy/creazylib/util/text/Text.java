@@ -1,9 +1,12 @@
 package pl.creazy.creazylib.util.text;
 
 import java.io.File;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,6 +33,12 @@ public class Text {
       builder.append(string);
     }
     return builder.toString();
+  }
+
+  @SneakyThrows
+  public static @NotNull String hash(@NotNull String text) {
+    var digest = MessageDigest.getInstance("SHA-256");
+    return new BigInteger(digest.digest(text.getBytes())).toString(16);
   }
 
   public static @NotNull String path(@NotNull String path) {
