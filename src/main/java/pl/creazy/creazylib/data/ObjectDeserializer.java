@@ -8,13 +8,11 @@ import org.bukkit.util.io.BukkitObjectInputStream;
 import org.jetbrains.annotations.NotNull;
 
 public class ObjectDeserializer {
-  @NotNull
-  public <T> T deserializeToBukkitObject(byte[] bytes, @NotNull Class<T> castTo) throws RuntimeException {
+  public @NotNull <T> T deserializeToBukkitObject(byte @NotNull [] bytes, @NotNull Class<T> castTo) throws RuntimeException {
     return castTo.cast(deserializeToBukkitObject(bytes));
   }
 
-  @NotNull
-  public Object deserializeToBukkitObject(byte[] bytes) throws RuntimeException {
+  public @NotNull Object deserializeToBukkitObject(byte @NotNull [] bytes) throws RuntimeException {
     try {
       ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
       BukkitObjectInputStream objectInputStream = new BukkitObjectInputStream(byteArrayInputStream);
@@ -25,13 +23,11 @@ public class ObjectDeserializer {
     }
   }
 
-  @NotNull
-  public <T> T deserializeToJavaObject(byte[] bytes, @NotNull Class<T> castTo) throws RuntimeException {
+  public @NotNull <T> T deserializeToJavaObject(byte @NotNull [] bytes, @NotNull Class<T> castTo) throws RuntimeException {
     return castTo.cast(deserializeToJavaObject(bytes));
   }
 
-  @NotNull
-  public Object deserializeToJavaObject(byte[] bytes) throws RuntimeException {
+  public @NotNull Object deserializeToJavaObject(byte @NotNull [] bytes) throws RuntimeException {
     try {
       ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
       ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
