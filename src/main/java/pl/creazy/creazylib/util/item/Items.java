@@ -3,6 +3,7 @@ package pl.creazy.creazylib.util.item;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -53,5 +54,12 @@ public class Items {
         inventory.addItem(item);
       }
     }
+  }
+
+  public static void replace(@NotNull ItemStack item, @NotNull ItemStack replacer) {
+    item.setItemMeta(replacer.getItemMeta());
+    item.setType(replacer.getType());
+    item.setData(replacer.getData());
+    item.setAmount(replacer.getAmount());
   }
 }

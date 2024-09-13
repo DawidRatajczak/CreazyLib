@@ -2,6 +2,7 @@ package pl.creazy.creazylib.part;
 
 import static java.lang.String.format;
 
+import java.util.LinkedList;
 import java.util.stream.Collectors;
 import org.jetbrains.annotations.NotNull;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class PartLoader {
     var configFileLoader = new ConfigFileLoader();
     var createdParts = plugin.getPartTypes().stream()
         .map(creator::createPart)
-        .collect(Collectors.toList());
+        .collect(Collectors.toCollection(LinkedList::new));
 
     if (plugin.getClass().isAnnotationPresent(Plugin.class)) {
       createdParts.addFirst(plugin);

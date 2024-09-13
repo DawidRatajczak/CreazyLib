@@ -33,7 +33,7 @@ public class SerializableNbtDataType<T> implements PersistentDataType<byte[], T>
 
   @Override
   public byte @NotNull [] toPrimitive(@NotNull T object, @NotNull PersistentDataAdapterContext context) {
-    return new ObjectSerializer().serializeJavaObject((Serializable) object);
+    return new ObjectSerializer().serializeJavaObject(object);
   }
 
   @NotNull

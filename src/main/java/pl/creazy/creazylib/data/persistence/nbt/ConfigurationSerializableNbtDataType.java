@@ -12,8 +12,12 @@ public class ConfigurationSerializableNbtDataType<T> implements PersistentDataTy
   private final Class<T> type;
 
   ConfigurationSerializableNbtDataType(Class<T> type) {
-    if (!ConfigurationSerializable.class.isAssignableFrom(type)) {
-      throw new RuntimeException(String.format("Type %s must implement Configuration Serializable", type.getName()));
+    var exception = new RuntimeException(String.format("Type %s must implement Configuration Serializable", type.getName()));
+    if (!ConfigurationSerializable.class.isAssignableFrom(type) && !type.isArray()) {
+      throw exception;
+    }
+    if (type.isArray() && !ConfigurationSerializable.class.isAssignableFrom(type.getComponentType())) {
+      throw exception;
     }
     this.type = type;
   }
@@ -33,7 +37,7 @@ public class ConfigurationSerializableNbtDataType<T> implements PersistentDataTy
   @Override
   public byte @NotNull [] toPrimitive(@NotNull T object,
       @NotNull PersistentDataAdapterContext persistentDataAdapterContext) {
-    return new ObjectSerializer().serializeBukkitObject((ConfigurationSerializable) object);
+    return new ObjectSerializer().serializeBukkitObject(object);
   }
 
   @NotNull
