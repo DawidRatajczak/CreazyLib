@@ -8,6 +8,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 import static pl.creazy.creazylib.util.text.Text.color;
 
 public interface Message {
@@ -29,7 +31,15 @@ public interface Message {
     Message.create(message).sendActionBar(player);
   }
 
-  static Message create(@NotNull String message) {
+  static @NotNull Message create(@NotNull String message, @NotNull Placeholder... placeholders) {
+    var finalMessage = message;
+    for (Placeholder placeholder : placeholders) {
+      finalMessage = finalMessage.replace(placeholder.getPlaceholder(), placeholder.getValue().toString());
+    }
+    return create(finalMessage);
+  }
+
+  static @NotNull Message create(@NotNull String message) {
     return new Message() {
       @Override
       public void sendChat(@NotNull CommandSender sender) {

@@ -3,6 +3,7 @@ package pl.creazy.creazylib.command;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.command.Command;
@@ -57,9 +58,7 @@ public class PlayerCommandWrapper implements CommandExecutor, TabCompleter {
             if (method.getParameterTypes()[0].equals(Player.class)) {
               finalArgs.add(player);
             }
-            for (Object arg : methodArgs) {
-              finalArgs.add(arg);
-            }
+            finalArgs.addAll(Arrays.asList(methodArgs));
             argsCommand.getMethod().setAccessible(true);
             argsCommand.getMethod().invoke(commandPart, finalArgs.toArray());
             return true;
@@ -98,6 +97,7 @@ public class PlayerCommandWrapper implements CommandExecutor, TabCompleter {
         .filter(pattern -> pattern.length >= args.length)
         .filter(pattern -> comparePatternForTabCompleter(pattern, args))
         .map(pattern -> pattern[args.length - 1])
+        .filter(pattern -> !pattern.startsWith("?"))
         .toList();
   }
 
