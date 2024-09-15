@@ -19,12 +19,16 @@ public interface Placeholder {
     };
   }
 
-  static Placeholder playerName(@NotNull String playerName) {
+  static @NotNull Placeholder playerName(@NotNull String playerName) {
     return create("${PLAYER_NAME}", playerName);
   }
 
-  static Placeholder playerUuid(@NotNull UUID playerUuid) {
+  static @NotNull Placeholder playerUuid(@NotNull UUID playerUuid) {
     return create("${PLAYER_UUID}", playerUuid);
+  }
+
+  static @NotNull Placeholder amount(double amount) {
+    return create("${AMOUNT}", amount);
   }
 
   @NotNull String getPlaceholder();

@@ -34,7 +34,7 @@ public interface Message {
   static @NotNull Message create(@NotNull String message, @NotNull Placeholder... placeholders) {
     var finalMessage = message;
     for (Placeholder placeholder : placeholders) {
-      finalMessage = finalMessage.replace(placeholder.getPlaceholder(), placeholder.getValue().toString());
+      finalMessage = finalMessage.replace(placeholder.getPlaceholder(), String.valueOf(placeholder.getValue()));
     }
     return create(finalMessage);
   }
