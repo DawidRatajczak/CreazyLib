@@ -1,5 +1,6 @@
 package pl.creazy.creazylib.sql;
 
+import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
@@ -7,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@UtilityClass
 public class Sql {
   public static int executeUpdate(
       @NotNull Connection connection,

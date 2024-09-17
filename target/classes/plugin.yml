@@ -7,3 +7,5 @@ website: creazy.pl
 commands:
   item:
     description: get items
+  economy:
+    description: manage economy

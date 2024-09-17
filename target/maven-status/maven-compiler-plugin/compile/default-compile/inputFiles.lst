@@ -35,7 +35,11 @@
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/drop/BonusDropSupport.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/drop/Drop.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/drop/DropManagerBase.java
+/home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/economy/EconomyManager.java
+/home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/economy/EconomyValue.java
+/home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/engine/command/EconomyCommand.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/engine/command/ItemCommand.java
+/home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/engine/config/EconomyMessageConfig.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/engine/listener/block/BlockBreakListener.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/engine/listener/entity/EntityDamageByEntityListener.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/engine/listener/entity/EntityDeathListener.java
@@ -85,6 +89,7 @@
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/part/handler/BlockDropLoader.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/part/handler/CommandLoader.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/part/handler/ConfigFileLoader.java
+/home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/part/handler/EconomyValueLoader.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/part/handler/EntityDropLoader.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/part/handler/ItemActionLoader.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/part/handler/ItemLoader.java
