@@ -28,6 +28,14 @@ public interface Placeholder {
   }
 
   static @NotNull Placeholder amount(double amount) {
+    return create("${AMOUNT}", String.format("%.2f", amount));
+  }
+
+  static @NotNull Placeholder amount(int amount) {
+    return create("${AMOUNT}", amount);
+  }
+
+  static @NotNull Placeholder amount(@NotNull String amount) {
     return create("${AMOUNT}", amount);
   }
 
