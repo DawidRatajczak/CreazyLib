@@ -2,6 +2,7 @@ package pl.creazy.creazylib.economy;
 
 import lombok.extern.flogger.Flogger;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import pl.creazy.creazylib.CreazyLib;
 import pl.creazy.creazylib.data.persistence.config.Config;
@@ -86,8 +87,16 @@ public class EconomyManager {
     return setBalance(playerName, BALANCE, balance);
   }
 
+  public double setBalance(@NotNull Player player, double balance) {
+    return setBalance(player.getName(), balance);
+  }
+
   public double getBalance(@NotNull String playerName) {
     return getBalance(playerName, BALANCE);
+  }
+
+  public double getBalance(@NotNull Player player) {
+    return getBalance(player.getName());
   }
 
   public double setBalance(@NotNull String playerName, @NotNull EconomyValue value, double balance) {
@@ -98,11 +107,19 @@ public class EconomyManager {
     return balance;
   }
 
+  public double setBalance(@NotNull Player player, @NotNull EconomyValue value, double balance) {
+    return setBalance(player.getName(), value, balance);
+  }
+
   public double getBalance(@NotNull String playerName, @NotNull EconomyValue value) {
     if (!economyValues.contains(value.getName())) {
       return -1D;
     }
     return data.getDouble(Text.create(playerName, ".", value.getName()), 0D);
+  }
+
+  public double getBalance(@NotNull Player player, @NotNull EconomyValue value) {
+    return getBalance(player.getName(), value);
   }
 
   public void addBalance(@NotNull String playerName, @NotNull EconomyValue value, double balance) {
@@ -111,6 +128,14 @@ public class EconomyManager {
 
   public void addBalance(@NotNull String playerName, double balance) {
     setBalance(playerName, BALANCE, getBalance(playerName) + balance);
+  }
+
+  public void addBalance(@NotNull Player player, @NotNull EconomyValue value, double balance) {
+    addBalance(player.getName(), value, balance);
+  }
+
+  public void addBalance(@NotNull Player player, double balance) {
+    setBalance(player.getName(), balance);
   }
 
   public boolean substractBalance(@NotNull String playerName, @NotNull EconomyValue value, double balance) {
@@ -125,12 +150,36 @@ public class EconomyManager {
     return substractBalance(playerName, BALANCE, balance);
   }
 
+  public boolean substractBalance(@NotNull Player player, double balance) {
+    return substractBalance(player.getName(), balance);
+  }
+
+  public boolean substractBalance(@NotNull Player player, @NotNull EconomyValue value, double balance) {
+    return substractBalance(player.getName(), value, balance);
+  }
+
   public boolean hasBalance(@NotNull String playerName, @NotNull EconomyValue value, double balance) {
     return getBalance(playerName, value) >= balance;
   }
 
   public boolean hasBalance(@NotNull String playerName, double balance) {
     return hasBalance(playerName, BALANCE, balance);
+  }
+
+  public boolean hasBalance(@NotNull Player player, @NotNull EconomyValue value, double balance) {
+    return hasBalance(player.getName(), value, balance);
+  }
+
+  public boolean hasBalance(@NotNull Player player, double balance) {
+    return hasBalance(player.getName(), balance);
+  }
+
+  public boolean transact(@NotNull Player fromPlayer, @NotNull Player toPlayer, @NotNull EconomyValue value, double balance) {
+    return transact(fromPlayer.getName(), toPlayer.getName(), value, balance);
+  }
+
+  public boolean transact(@NotNull Player fromPlayer, @NotNull Player toPlayer, double price) {
+    return transact(fromPlayer, toPlayer, BALANCE, price);
   }
 
   public boolean transact(@NotNull String fromPlayerName, @NotNull String toPlayerName, @NotNull EconomyValue value, double balance) {
