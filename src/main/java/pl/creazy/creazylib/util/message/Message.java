@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pl.creazy.creazylib.util.text.Text;
 
 import java.util.List;
 
@@ -58,7 +59,7 @@ public interface Message {
 
       @Override
       public String getContent() {
-        return message;
+        return Text.color(message);
       }
     };
   }

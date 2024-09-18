@@ -104,4 +104,44 @@ public class EconomyManager {
     }
     return data.getDouble(Text.create(playerName, ".", value.getName()), 0D);
   }
+
+  public void addBalance(@NotNull String playerName, @NotNull EconomyValue value, double balance) {
+    setBalance(playerName, value, getBalance(playerName, value) + balance);
+  }
+
+  public void addBalance(@NotNull String playerName, double balance) {
+    setBalance(playerName, BALANCE, getBalance(playerName) + balance);
+  }
+
+  public boolean substractBalance(@NotNull String playerName, @NotNull EconomyValue value, double balance) {
+    if (!hasBalance(playerName, value, balance)) {
+      return false;
+    }
+    addBalance(playerName, value, -balance);
+    return true;
+  }
+
+  public boolean substractBalance(@NotNull String playerName, double balance) {
+    return substractBalance(playerName, BALANCE, balance);
+  }
+
+  public boolean hasBalance(@NotNull String playerName, @NotNull EconomyValue value, double balance) {
+    return getBalance(playerName, value) >= balance;
+  }
+
+  public boolean hasBalance(@NotNull String playerName, double balance) {
+    return hasBalance(playerName, BALANCE, balance);
+  }
+
+  public boolean transact(@NotNull String fromPlayerName, @NotNull String toPlayerName, @NotNull EconomyValue value, double balance) {
+    if (!substractBalance(fromPlayerName, value, balance)) {
+      return false;
+    }
+    addBalance(toPlayerName, value, balance);
+    return true;
+  }
+
+  public boolean transact(@NotNull String fromPlayerName, @NotNull String toPlayerName, double balance) {
+    return transact(fromPlayerName, toPlayerName, BALANCE, balance);
+  }
 }
