@@ -103,11 +103,13 @@
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/recipe/constraints/AddRecipe.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/recipe/constraints/Recipes.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/sql/Sql.java
+/home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/util/inventory/Inventories.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/util/item/Items.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/util/key/Key.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/util/math/Numbers.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/util/message/Message.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/util/message/Placeholder.java
+/home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/util/player/Players.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/util/result/Result.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/util/result/StatusResult.java
 /home/json/projects/minecraft/CreazyLib/src/main/java/pl/creazy/creazylib/util/text/Text.java
