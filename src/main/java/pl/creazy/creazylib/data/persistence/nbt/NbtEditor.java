@@ -31,8 +31,10 @@ public interface NbtEditor<T extends NbtEditor<T>> {
     return new ItemNbtEditor(item, meta);
   }
 
+  @NotNull T remove(NamespacedKey key);
+
   @NotNull
-  T set(NamespacedKey key, Object object);
+  T set(@NotNull NamespacedKey key, @NotNull Object object);
 
   @Nullable
   <U> U get(@NotNull NamespacedKey key, @NotNull Class<U> type);

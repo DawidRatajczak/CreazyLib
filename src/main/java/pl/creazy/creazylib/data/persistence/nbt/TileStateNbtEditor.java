@@ -12,8 +12,14 @@ class TileStateNbtEditor extends NbtEditorBase<TileStateNbtEditor> implements Sa
   private final TileState state;
 
   @Override
+  public @NotNull TileStateNbtEditor remove(@NotNull NamespacedKey key) {
+    baseRemove(key);
+    return this;
+  }
+
+  @Override
   @NotNull 
-  public TileStateNbtEditor set(NamespacedKey key, Object object) {
+  public TileStateNbtEditor set(@NotNull NamespacedKey key, @NotNull Object object) {
     baseSet(key, object);
     return this;
   }

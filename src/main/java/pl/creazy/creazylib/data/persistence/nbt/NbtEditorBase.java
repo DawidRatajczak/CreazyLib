@@ -12,8 +12,12 @@ public abstract class NbtEditorBase<T extends NbtEditor<T>> implements NbtEditor
     return getData().get(key, NbtDataType.match(type));
   }
 
+  protected void baseRemove(@NotNull NamespacedKey key) {
+    getData().remove(key);
+  }
+
   @SuppressWarnings("unchecked")
-  protected <U> void baseSet(NamespacedKey key, U object) {
+  protected <U> void baseSet(@NotNull NamespacedKey key, @NotNull U object) {
     getData().set(key, NbtDataType.match((Class<U>) object.getClass()), object);
   }
   protected abstract PersistentDataContainer getData();

@@ -12,13 +12,19 @@ public class EntityNbtEditor extends NbtEditorBase<EntityNbtEditor> {
   private final Entity entity;
 
   @Override
-  public @NotNull EntityNbtEditor set(NamespacedKey key, Object object) {
+  public @NotNull EntityNbtEditor remove(@NotNull NamespacedKey key) {
+    baseRemove(key);
+    return this;
+  }
+
+  @Override
+  public @NotNull EntityNbtEditor set(@NotNull NamespacedKey key, @NotNull Object object) {
     baseSet(key, object);
     return this;
   }
 
   @Override
-  protected PersistentDataContainer getData() {
+  protected @NotNull PersistentDataContainer getData() {
     return entity.getPersistentDataContainer();
   }
 }

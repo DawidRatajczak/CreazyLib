@@ -12,10 +12,16 @@ import lombok.AllArgsConstructor;
 class ItemNbtEditor extends NbtEditorBase<ItemNbtEditor> implements SaveableNbtEditor<ItemNbtEditor> {
   private final ItemStack item;
   private final ItemMeta meta;
-  
+
+  @Override
+  public @NotNull ItemNbtEditor remove(@NotNull NamespacedKey key) {
+    baseRemove(key);
+    return this;
+  }
+
   @Override
   @NotNull 
-  public ItemNbtEditor set(NamespacedKey key, Object object) {
+  public ItemNbtEditor set(@NotNull NamespacedKey key, @NotNull Object object) {
     baseSet(key, object);
     return this;
   }
