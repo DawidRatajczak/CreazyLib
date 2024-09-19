@@ -9,3 +9,5 @@ commands:
     description: get items
   economy:
     description: manage economy
+  test:
+    description: test command

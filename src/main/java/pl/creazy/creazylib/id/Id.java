@@ -3,6 +3,7 @@ package pl.creazy.creazylib.id;
 import java.io.Serializable;
 import java.util.Optional;
 
+import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.TileState;
@@ -18,10 +19,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import pl.creazy.creazylib.CreazyLib;
+import pl.creazy.creazylib.data.persistence.config.Config;
 import pl.creazy.creazylib.data.persistence.nbt.NbtEditor;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
 import pl.creazy.creazylib.util.item.Items;
 import pl.creazy.creazylib.util.key.Key;
+import pl.creazy.creazylib.util.text.Text;
 
 @Getter
 @ToString
@@ -63,11 +66,11 @@ public class Id implements Serializable {
     return NbtEditor.of(entity).get(createKey(), Id.class);
   }
 
-  public static @Nullable Id get(@Nullable TileState block) {
-    if (block == null) {
+  public static @Nullable Id get(@Nullable TileState tileState) {
+    if (tileState == null) {
       return null;
     }
-    return NbtEditor.of(block).get(createKey(), Id.class);
+    return NbtEditor.of(tileState).get(createKey(), Id.class);
   }
 
   public void set(@NotNull TileState block) {
