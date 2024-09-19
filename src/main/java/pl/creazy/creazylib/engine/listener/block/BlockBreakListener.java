@@ -29,33 +29,33 @@ public class BlockBreakListener implements Listener {
     }
   }
 
-  @EventHandler
-  void handleBlockAction(BlockBreakEvent event) {
-    var action = blockActionManager.getBlockBreakAction(Id.get(event.getBlock()));
-
-    if (action != null) {
-      action.handle(event);
-    }
-  }
-
-  @EventHandler
-  void handleBlockDrops(BlockBreakEvent event) {
-    var drop = blockDropManager.getDrop(event.getBlock());
-
-    if (drop == null) {
-      return;
-    }
-    if (!drop.canDrop(event.getBlock())) {
-      return;
-    }
-
-    var amount = blockDropManager.getFinalDropAmount(event.getPlayer(), drop);
-    var location = event.getBlock().getLocation();
-    var world = event.getBlock().getWorld();
-
-    for (int i = 0; i < amount; i++) {
-      drop.getDrops(event.getPlayer()).forEach(item -> world.dropItem(location, item));
-    }
-    event.setExpToDrop(event.getExpToDrop() + drop.getBonusExp(event.getPlayer()));
-  }
+//  @EventHandler
+//  void handleBlockAction(BlockBreakEvent event) {
+//    var action = blockActionManager.getBlockBreakAction(Id.get(event.getBlock()));
+//
+//    if (action != null) {
+//      action.handle(event);
+//    }
+//  }
+//
+//  @EventHandler
+//  void handleBlockDrops(BlockBreakEvent event) {
+//    var drop = blockDropManager.getDrop(event.getBlock());
+//
+//    if (drop == null) {
+//      return;
+//    }
+//    if (!drop.canDrop(event.getBlock())) {
+//      return;
+//    }
+//
+//    var amount = blockDropManager.getFinalDropAmount(event.getPlayer(), drop);
+//    var location = event.getBlock().getLocation();
+//    var world = event.getBlock().getWorld();
+//
+//    for (int i = 0; i < amount; i++) {
+//      drop.getDrops(event.getPlayer()).forEach(item -> world.dropItem(location, item));
+//    }
+//    event.setExpToDrop(event.getExpToDrop() + drop.getBonusExp(event.getPlayer()));
+//  }
 }

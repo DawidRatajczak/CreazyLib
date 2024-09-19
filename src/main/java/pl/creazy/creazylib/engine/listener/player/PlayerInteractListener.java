@@ -26,12 +26,12 @@ class PlayerInteractListener implements Listener {
     }
   }
 
-  @EventHandler
-  void handleBlockClickAction(PlayerInteractEvent event) {
-    var action = blockActionManager.getBlockClickAction(Id.get(event.getClickedBlock()));
-
-    if (action != null) {
-      action.handle(event);
-    }
-  }
+//  @EventHandler
+//  void handleBlockClickAction(PlayerInteractEvent event) {
+//    var action = blockActionManager.getBlockClickAction(Id.get(event.getClickedBlock()));
+//
+//    if (action != null) {
+//      action.handle(event);
+//    }
+//  }
 }

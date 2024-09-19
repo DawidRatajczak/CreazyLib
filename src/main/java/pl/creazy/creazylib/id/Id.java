@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
+import org.bukkit.block.TileState;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -44,7 +45,7 @@ public class Id implements Serializable {
     return Optional.ofNullable(get(entity));
   }
 
-  public static @NotNull Optional<Id> find(@Nullable Block block) {
+  public static @NotNull Optional<Id> find(@Nullable TileState block) {
     return Optional.ofNullable(get(block));
   }
 
@@ -62,32 +63,19 @@ public class Id implements Serializable {
     return NbtEditor.of(entity).get(createKey(), Id.class);
   }
 
-  public static @Nullable Id get(@Nullable Block block) {
+  public static @Nullable Id get(@Nullable TileState block) {
     if (block == null) {
       return null;
     }
-    for (var value : block.getMetadata(NAMESPACE)) {
-      if (value.getOwningPlugin() == null) {
-        continue;
-      }
-      if (!(value.value() instanceof Id id)) {
-        continue;
-      }
-      if (value.getOwningPlugin().getName().equals(CreazyLib.NAME)) {
-        return id;
-      }
-    }
-    return null;
+    return NbtEditor.of(block).get(createKey(), Id.class);
   }
 
-  public void set(@NotNull Block block) {
-    block.setMetadata(NAMESPACE, new FixedMetadataValue(CreazyLib.request(), this));
+  public void set(@NotNull TileState block) {
+    NbtEditor.of(block).set(createKey(), this).save();
   }
 
   public void set(@NotNull ItemStack item) {
-    NbtEditor.of(item)
-        .set(createKey(), this)
-        .save();
+    NbtEditor.of(item).set(createKey(), this).save();
   }
 
   public void set(@NotNull ItemStack item, @NotNull ItemMeta meta) {

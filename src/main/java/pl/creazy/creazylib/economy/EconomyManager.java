@@ -135,7 +135,7 @@ public class EconomyManager {
   }
 
   public void addBalance(@NotNull Player player, double balance) {
-    setBalance(player.getName(), balance);
+    addBalance(player.getName(), balance);
   }
 
   public boolean substractBalance(@NotNull String playerName, @NotNull EconomyValue value, double balance) {
