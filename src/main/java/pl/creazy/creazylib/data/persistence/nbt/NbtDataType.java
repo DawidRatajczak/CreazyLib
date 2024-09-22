@@ -5,6 +5,7 @@ import java.io.Serializable;
 import lombok.experimental.UtilityClass;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
 @UtilityClass
 public class NbtDataType {

@@ -17,6 +17,6 @@
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_20" project-jdk-name="21" project-jdk-type="JavaSDK">
-    <output url="file://$USER_HOME$/minecraft/servers/paper-1.21.1/plugins" />
+    <output url="file:///mnt/d/minecraft/servers/paper-1.21.1/plugins" />
   </component>
 </project>

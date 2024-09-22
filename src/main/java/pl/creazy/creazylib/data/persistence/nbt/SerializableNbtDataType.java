@@ -13,9 +13,6 @@ public class SerializableNbtDataType<T> implements PersistentDataType<byte[], T>
   private final Class<T> type;
 
   SerializableNbtDataType(Class<T> type) {
-    if (!Serializable.class.isAssignableFrom(type)) {
-      throw new RuntimeException(String.format("Type %s must implement Serializable", type.getName()));
-    }
     this.type = type;
   }
 
