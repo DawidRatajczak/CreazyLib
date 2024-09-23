@@ -24,13 +24,14 @@ public interface Menu {
     open(owner, 0);
   }
 
-  default @NotNull String getTitle() {
+  default @NotNull String getTitle(int pageIndex, @NotNull Player player, int size) {
     return "Menu";
   }
 
   default void open(@NotNull Player owner, int pageIndex) {
-    var page = getPage(pageIndex);
-    var inventory = Bukkit.createInventory(new MenuHolder(this, page, owner), page.getSize(), Text.color(getTitle()));
+    var page = getPage(pageIndex, owner);
+    var title = Text.color(getTitle(pageIndex, owner, page.getSize()));
+    var inventory = Bukkit.createInventory(new MenuHolder(this, page, owner), page.getSize(), title);
     page.setContent(inventory);
     owner.openInventory(inventory);
   }
@@ -41,5 +42,5 @@ public interface Menu {
   default void onOpen(@NotNull InventoryOpenEvent event) {
   }
 
-  @NotNull MenuPage getPage(int pageIndex);
+  @NotNull MenuPage getPage(int pageIndex, @NotNull Player owner);
 }
