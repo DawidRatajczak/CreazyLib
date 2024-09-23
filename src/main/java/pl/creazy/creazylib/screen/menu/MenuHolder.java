@@ -1,7 +1,5 @@
 package pl.creazy.creazylib.screen.menu;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
