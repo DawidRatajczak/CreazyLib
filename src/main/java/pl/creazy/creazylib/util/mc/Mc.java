@@ -1,6 +1,7 @@
 package pl.creazy.creazylib.util.mc;
 
 import lombok.experimental.UtilityClass;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.LivingEntity;
@@ -12,6 +13,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
+import java.util.UUID;
 
 @UtilityClass
 public class Mc {
@@ -114,7 +117,7 @@ public class Mc {
 
   public static boolean isFish(@NotNull ItemStack item) {
     var type = item.getType();
-    return type == Material.SALMON || type == Material.COD || type == Material.TROPICAL_FISH;
+    return type == Material.SALMON || type == Material.COD || type == Material.TROPICAL_FISH || type == Material.PUFFERFISH;
   }
 
   public static int getEnchantLevel(@NotNull Player player, @NotNull Enchantment enchant) {
@@ -126,5 +129,9 @@ public class Mc {
     item.setType(replacer.getType());
     item.setData(replacer.getData());
     item.setAmount(replacer.getAmount());
+  }
+
+  public static @NotNull String getPlayerName(@NotNull UUID playerUuid) {
+    return Objects.requireNonNull(Bukkit.getOfflinePlayer(playerUuid).getName());
   }
 }
