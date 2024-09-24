@@ -1,4 +1,4 @@
-package pl.creazy.creazylib.sql;
+package pl.creazy.creazylib.util.sql;
 
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
