@@ -5,8 +5,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.creazy.creazylib.id.Id;
-import pl.creazy.creazylib.util.item.Items;
 import pl.creazy.creazylib.util.math.Numbers;
+import pl.creazy.creazylib.util.mc.Mc;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,10 +30,10 @@ public abstract class DropManagerBase<T extends Drop> {
 
   @SuppressWarnings("DataFlowIssue")
   protected int getFinalDropAmount(
-          @Nullable Player player,
-          @NotNull T drop,
-          @NotNull BonusDropSupport support,
-          @NotNull Enchantment enchant) {
+      @Nullable Player player,
+      @NotNull T drop,
+      @NotNull BonusDropSupport support,
+      @NotNull Enchantment enchant) {
     if (player == null) {
       return drop.getAmount(null);
     }
@@ -42,7 +42,7 @@ public abstract class DropManagerBase<T extends Drop> {
     }
     var item = player.getInventory().getItemInMainHand();
 
-    if (!Items.isEmpty(item)) {
+    if (!Mc.isEmpty(item)) {
       var level = item.getItemMeta().getEnchantLevel(enchant);
 
       if (level == 0) {

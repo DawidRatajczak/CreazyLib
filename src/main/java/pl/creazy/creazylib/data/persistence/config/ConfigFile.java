@@ -18,6 +18,10 @@ class ConfigFile extends Config {
     file = new File(finalPath, name.concat(".yml"));
   }
 
+  ConfigFile(@NotNull File file) {
+    this.file = file;
+  }
+
   ConfigFile(@NotNull String name, @NotNull CreazyPlugin plugin) {
     file = new File(plugin.getDataFolder().getPath(), name.concat(".yml"));
   }
@@ -41,13 +45,13 @@ class ConfigFile extends Config {
     return file.length() == 0;
   }
   
+  @SuppressWarnings("ResultOfMethodCallIgnored")
   public ConfigFile reload() {
     if (!file.exists()) {
       final File parent = file.getParentFile();
 
       if (!parent.exists()) {
         parent.mkdirs();
-        
       }
 
       try {

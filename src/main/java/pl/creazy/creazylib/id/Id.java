@@ -1,30 +1,23 @@
 package pl.creazy.creazylib.id;
 
-import java.io.Serializable;
-import java.util.Optional;
-
-import org.bukkit.Location;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 import org.bukkit.NamespacedKey;
-import org.bukkit.block.Block;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.checkerframework.checker.units.qual.N;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
 import pl.creazy.creazylib.CreazyLib;
-import pl.creazy.creazylib.data.persistence.config.Config;
 import pl.creazy.creazylib.data.persistence.nbt.NbtEditor;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
-import pl.creazy.creazylib.util.item.Items;
 import pl.creazy.creazylib.util.key.Key;
-import pl.creazy.creazylib.util.text.Text;
+import pl.creazy.creazylib.util.mc.Mc;
+
+import java.io.Serializable;
+import java.util.Optional;
 
 @Getter
 @ToString
@@ -53,7 +46,7 @@ public class Id implements Serializable {
   }
 
   public static @Nullable Id get(@Nullable ItemStack item) {
-    if (Items.isEmpty(item)) {
+    if (Mc.isEmpty(item)) {
       return null;
     }
     return NbtEditor.of(item).get(createKey(), Id.class);

@@ -1,21 +1,12 @@
 package pl.creazy.creazylib.engine.listener.entity;
 
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import pl.creazy.creazylib.drop.BonusDropSupport;
-import pl.creazy.creazylib.entity.drop.EntityDrop;
 import pl.creazy.creazylib.entity.drop.EntityDropManager;
 import pl.creazy.creazylib.id.Id;
 import pl.creazy.creazylib.item.action.ItemActionManager;
 import pl.creazy.creazylib.part.constraints.Part;
-import pl.creazy.creazylib.util.item.Items;
-import pl.creazy.creazylib.util.math.Numbers;
 
 @Part
 class EntityDeathListener implements Listener {

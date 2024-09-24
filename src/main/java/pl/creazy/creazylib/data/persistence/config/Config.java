@@ -1,5 +1,6 @@
 package pl.creazy.creazylib.data.persistence.config;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,6 +27,10 @@ public abstract class Config {
       return new ConfigFile(name, plugin).reload();
     }
     return new ConfigFile(name, path, plugin).reload();
+  }
+
+  public static @NotNull Config getConfig(@NotNull String name, @NotNull String path) {
+    return new ConfigFile(new File(path, name)).reload();
   }
 
   @NotNull
