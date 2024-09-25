@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.google.gson.annotations.Since;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -33,6 +34,7 @@ import pl.creazy.creazylib.util.key.Key;
 import pl.creazy.creazylib.util.text.Text;
 import static pl.creazy.creazylib.util.text.Text.color;
 
+@SuppressWarnings("UnstableApiUsage")
 public class ItemBuilder {
   private static final String UNIQUE_PREFIX = "unique_";
 
