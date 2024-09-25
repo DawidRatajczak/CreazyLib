@@ -6,12 +6,12 @@ import pl.creazy.creazylib.command.constraints.Args;
 import pl.creazy.creazylib.command.constraints.Command;
 import pl.creazy.creazylib.command.constraints.HasPermissions;
 import pl.creazy.creazylib.economy.EconomyManager;
+import pl.creazy.creazylib.part.constraints.Injected;
 import pl.creazy.creazylib.part.constraints.Part;
 
-@Part
 @Command("economy")
 class EconomyCommand {
-  @Part
+  @Injected
   private EconomyManager economyManager;
 
   @Args("balance get ?s")

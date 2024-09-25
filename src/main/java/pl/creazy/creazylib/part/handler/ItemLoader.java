@@ -1,25 +1,29 @@
 package pl.creazy.creazylib.part.handler;
 
-import static java.lang.String.format;
+import org.bukkit.inventory.ItemStack;
+import pl.creazy.creazylib.item.ItemManager;
+import pl.creazy.creazylib.item.constraints.AddItem;
+import pl.creazy.creazylib.item.constraints.Items;
+import pl.creazy.creazylib.log.Logger;
+import pl.creazy.creazylib.part.PartCreateHandler;
+import pl.creazy.creazylib.part.PartManager;
+import pl.creazy.creazylib.part.constraints.Handler;
+import pl.creazy.creazylib.part.constraints.Injected;
+import pl.creazy.creazylib.plugin.CreazyPlugin;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.bukkit.inventory.ItemStack;
+import static java.lang.String.format;
 
-import pl.creazy.creazylib.item.ItemManager;
-import pl.creazy.creazylib.item.constraints.AddItem;
-import pl.creazy.creazylib.item.constraints.Items;
-import pl.creazy.creazylib.part.PartCreateHandler;
-import pl.creazy.creazylib.part.PartManager;
-import pl.creazy.creazylib.part.constraints.Part;
-import pl.creazy.creazylib.plugin.CreazyPlugin;
-
-@Part
+@Handler
 public class ItemLoader implements PartCreateHandler {
-  @Part
+  @Injected
   private ItemManager itemManager;
+
+  @Injected
+  private Logger logger;
 
   @Override
   public void onPartCreate(Object part, PartManager partManager, CreazyPlugin plugin) {
@@ -34,12 +38,14 @@ public class ItemLoader implements PartCreateHandler {
           var item = (ItemStack) field.get(part);
           if (addItem.value().isEmpty()) {
             itemManager.addItem(field.getName(), item);
+            logger.info("Added item: ".concat(field.getName()));
           } else {
             itemManager.addItem(addItem.value(), item);
+            logger.info("Added item: ".concat(addItem.value()));
           }
         } catch (IllegalAccessException | IllegalArgumentException exception) {
           throw new RuntimeException(
-                  format("Failed to add field item: %s", addItem.value().isEmpty() ? field.getName() : addItem.value()));
+              format("Failed to add field item: %s", addItem.value().isEmpty() ? field.getName() : addItem.value()));
         }
       }
     }
@@ -51,12 +57,14 @@ public class ItemLoader implements PartCreateHandler {
           var item = (ItemStack) method.invoke(part);
           if (addItem.value().isEmpty()) {
             itemManager.addItem(method.getName(), item);
+            logger.info("Added item: ".concat(method.getName()));
           } else {
             itemManager.addItem(addItem.value(), item);
+            logger.info("Added item: ".concat(addItem.value()));
           }
         } catch (InvocationTargetException | IllegalAccessException exception) {
           throw new RuntimeException(
-                  format("Failed to add method item: %s", addItem.value().isEmpty() ? method.getName() : addItem.value()));
+              format("Failed to add method item: %s", addItem.value().isEmpty() ? method.getName() : addItem.value()));
         }
       }
     }

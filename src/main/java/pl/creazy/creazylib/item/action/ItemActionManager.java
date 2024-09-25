@@ -4,12 +4,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.creazy.creazylib.action.ActionManagerBase;
 import pl.creazy.creazylib.id.Id;
-import pl.creazy.creazylib.part.constraints.Part;
+import pl.creazy.creazylib.manager.constraints.Manager;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Part
+@Manager
 public class ItemActionManager extends ActionManagerBase<ItemAction<?>> {
   private final Map<Id, ItemClickAction> clickActions = new HashMap<>();
   private final Map<Id, ItemClickAtEntityAction> clickAtEntityActions = new HashMap<>();

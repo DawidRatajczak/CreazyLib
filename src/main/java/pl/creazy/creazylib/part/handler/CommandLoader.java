@@ -1,22 +1,21 @@
 package pl.creazy.creazylib.part.handler;
 
-import static java.lang.String.format;
-
-import org.bukkit.command.TabCompleter;
-
 import pl.creazy.creazylib.command.PlayerCommandWrapper;
 import pl.creazy.creazylib.command.constraints.Command;
 import pl.creazy.creazylib.log.Logger;
 import pl.creazy.creazylib.part.PartCreateHandler;
 import pl.creazy.creazylib.part.PartManager;
-import pl.creazy.creazylib.part.constraints.Part;
+import pl.creazy.creazylib.part.constraints.Handler;
+import pl.creazy.creazylib.part.constraints.Injected;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
 
 import java.util.Objects;
 
-@Part
+import static java.lang.String.format;
+
+@Handler
 class CommandLoader implements PartCreateHandler {
-  @Part
+  @Injected
   private Logger logger;
 
   @Override

@@ -3,10 +3,10 @@ package pl.creazy.creazylib.engine.listener.inventory;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import pl.creazy.creazylib.part.constraints.Part;
+import pl.creazy.creazylib.listener.constraints.EventListener;
 import pl.creazy.creazylib.screen.menu.MenuHolder;
 
-@Part
+@EventListener
 class InventoryClickListener implements Listener {
   @EventHandler
   void onEvent(InventoryClickEvent event) {

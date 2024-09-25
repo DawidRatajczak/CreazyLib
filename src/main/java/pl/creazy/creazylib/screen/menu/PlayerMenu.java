@@ -10,13 +10,13 @@ import pl.creazy.creazylib.util.text.Text;
 
 import java.util.Objects;
 
-public interface Menu {
-  static void open(@NotNull Class<? extends Menu> type, @NotNull Player player) {
+public interface PlayerMenu {
+  static void open(@NotNull Class<? extends PlayerMenu> type, @NotNull Player player) {
     open(type, player, 0);
   }
 
-  static void open(@NotNull Class<? extends Menu> type, @NotNull Player owner, int pageIndex) {
-    var menu = (Menu) CreazyLib.request().getPartManager().getPart(type);
+  static void open(@NotNull Class<? extends PlayerMenu> type, @NotNull Player owner, int pageIndex) {
+    var menu = (PlayerMenu) CreazyLib.request().getPartManager().getPart(type);
     Objects.requireNonNull(menu).open(owner, pageIndex);
   }
 

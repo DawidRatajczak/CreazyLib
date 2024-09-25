@@ -8,9 +8,10 @@ import java.util.Optional;
 
 import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
+import pl.creazy.creazylib.manager.constraints.Manager;
 import pl.creazy.creazylib.part.constraints.Part;
 
-@Part
+@Manager
 public class RecipeManager {
   private final Map<NamespacedKey, RecipeCraftHandler> recipeCraftHandlers = new HashMap<>();
 

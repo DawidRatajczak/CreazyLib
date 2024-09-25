@@ -5,7 +5,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
 
-public record MenuHolder(Menu menu, MenuPage page, Player owner) implements InventoryHolder {
+public record MenuHolder(PlayerMenu menu, MenuPage page, Player owner) implements InventoryHolder {
   @NotNull
   @Override
   public Inventory getInventory() {

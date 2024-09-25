@@ -4,12 +4,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.creazy.creazylib.action.ActionManagerBase;
 import pl.creazy.creazylib.id.Id;
-import pl.creazy.creazylib.part.constraints.Part;
+import pl.creazy.creazylib.manager.constraints.Manager;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Part
+@Manager
 public class ArmorActionManager extends ActionManagerBase<ArmorAction> {
   private final Map<Id, ArmorOnAction> armorOnActions = new HashMap<>();
 

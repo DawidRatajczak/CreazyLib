@@ -3,6 +3,7 @@ package pl.creazy.creazylib.plugin;
 import static java.lang.String.format;
 
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.JarFile;
@@ -39,7 +40,7 @@ public abstract class CreazyPlugin extends JavaPlugin {
           if (className.startsWith(getClass().getPackageName())) {
             var type = Class.forName(className);
 
-            if (type.isAnnotationPresent(Part.class)) {
+            if (isPart(type)) {
               classes.add(type);
             }
           }
@@ -64,5 +65,20 @@ public abstract class CreazyPlugin extends JavaPlugin {
     var partManager = CreazyLib.getPlugin(CreazyLib.class).getPartManager();
     var onDisableInvoker = new OnDisableInvoker(partManager);
     partManager.getParts(this).forEach(onDisableInvoker::invokeAllMethods);
+  }
+
+  private boolean isPart(Class<?> type) {
+    if (type.isAnnotation()) {
+      return false;
+    }
+    if (type.isAnnotationPresent(Part.class)) {
+      return true;
+    }
+    for (Annotation annotation : type.getAnnotations()) {
+      if (annotation.annotationType().isAnnotationPresent(Part.class)) {
+        return true;
+      }
+    }
+    return false;
   }
 }

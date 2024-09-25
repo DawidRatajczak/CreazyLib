@@ -8,6 +8,8 @@ import pl.creazy.creazylib.CreazyLib;
 import pl.creazy.creazylib.data.persistence.config.Config;
 import pl.creazy.creazylib.engine.config.EconomyMessageConfig;
 import pl.creazy.creazylib.log.Logger;
+import pl.creazy.creazylib.manager.constraints.Manager;
+import pl.creazy.creazylib.part.constraints.Injected;
 import pl.creazy.creazylib.part.constraints.OnDisable;
 import pl.creazy.creazylib.part.constraints.OnEnable;
 import pl.creazy.creazylib.part.constraints.Part;
@@ -20,9 +22,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-@Part
+@Manager
 public class EconomyManager {
-  @Part
+  @Injected
   private EconomyMessageConfig messages;
 
   private Config data;
@@ -32,7 +34,7 @@ public class EconomyManager {
   private static final EconomyValue BALANCE = () -> "balance";
 
   @OnEnable
-  private void setup(@Part CreazyLib plugin, @Part Logger logger) {
+  private void setup(@Injected CreazyLib plugin, @Injected Logger logger) {
     data = Config.getConfig("economy", "data", plugin);
     Bukkit.getScheduler().runTaskTimer(
         plugin,

@@ -1,6 +1,4 @@
-package pl.creazy.creazylib.recipe.constraints;
-
-import pl.creazy.creazylib.part.constraints.Part;
+package pl.creazy.creazylib.part.constraints;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Part
-@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Recipes {
+@Target(ElementType.TYPE)
+public @interface Handler {
 }

@@ -6,14 +6,15 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import pl.creazy.creazylib.entity.drop.EntityDropManager;
 import pl.creazy.creazylib.id.Id;
 import pl.creazy.creazylib.item.action.ItemActionManager;
-import pl.creazy.creazylib.part.constraints.Part;
+import pl.creazy.creazylib.listener.constraints.EventListener;
+import pl.creazy.creazylib.part.constraints.Injected;
 
-@Part
+@EventListener
 class EntityDeathListener implements Listener {
-  @Part
+  @Injected
   private ItemActionManager itemActionManager;
 
-  @Part
+  @Injected
   private EntityDropManager entityDropManager;
 
   @EventHandler

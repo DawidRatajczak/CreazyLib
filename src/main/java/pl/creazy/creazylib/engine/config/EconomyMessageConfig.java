@@ -5,7 +5,6 @@ import pl.creazy.creazylib.data.persistence.config.constraints.ConfigFile;
 import pl.creazy.creazylib.data.persistence.config.constraints.ConfigVar;
 import pl.creazy.creazylib.part.constraints.Part;
 
-@Part
 @Getter
 @ConfigFile(name = "economy", path = "message")
 public class EconomyMessageConfig {

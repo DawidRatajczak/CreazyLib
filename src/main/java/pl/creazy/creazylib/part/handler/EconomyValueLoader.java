@@ -5,16 +5,17 @@ import pl.creazy.creazylib.economy.EconomyValue;
 import pl.creazy.creazylib.log.Logger;
 import pl.creazy.creazylib.part.PartCreateHandler;
 import pl.creazy.creazylib.part.PartManager;
-import pl.creazy.creazylib.part.constraints.Part;
+import pl.creazy.creazylib.part.constraints.Handler;
+import pl.creazy.creazylib.part.constraints.Injected;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
 import pl.creazy.creazylib.util.text.Text;
 
-@Part
+@Handler
 class EconomyValueLoader implements PartCreateHandler {
-  @Part
+  @Injected
   private EconomyManager economyManager;
 
-  @Part
+  @Injected
   private Logger logger;
 
   @Override

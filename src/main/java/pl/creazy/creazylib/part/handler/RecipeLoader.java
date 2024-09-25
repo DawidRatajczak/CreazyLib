@@ -1,25 +1,25 @@
 package pl.creazy.creazylib.part.handler;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.BlastingRecipe;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.Recipe;
-
 import org.bukkit.inventory.SmokingRecipe;
 import pl.creazy.creazylib.log.Logger;
 import pl.creazy.creazylib.part.PartCreateHandler;
 import pl.creazy.creazylib.part.PartManager;
-import pl.creazy.creazylib.part.constraints.Part;
+import pl.creazy.creazylib.part.constraints.Handler;
+import pl.creazy.creazylib.part.constraints.Injected;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
 import pl.creazy.creazylib.recipe.constraints.AddRecipe;
 import pl.creazy.creazylib.recipe.constraints.Recipes;
 
-@Part
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+@Handler
 class RecipeLoader implements PartCreateHandler {
-  @Part
+  @Injected
   private Logger logger;
 
   @Override
@@ -33,7 +33,6 @@ class RecipeLoader implements PartCreateHandler {
         continue;
       }
       if (!Recipe.class.isAssignableFrom(method.getReturnType())) {
-        plugin.getLogger().info("not recipe");
         continue;
       }
       if (method.getParameterCount() != 0) {

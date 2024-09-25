@@ -8,9 +8,9 @@ import org.jetbrains.annotations.Nullable;
 import pl.creazy.creazylib.drop.BonusDropSupport;
 import pl.creazy.creazylib.drop.DropManagerBase;
 import pl.creazy.creazylib.id.Id;
-import pl.creazy.creazylib.part.constraints.Part;
+import pl.creazy.creazylib.manager.constraints.Manager;
 
-@Part
+@Manager
 public class EntityDropManager extends DropManagerBase<EntityDrop> {
   public @Nullable EntityDrop getDrop(@Nullable Entity entity) {
     var id = Id.get(entity);

@@ -14,12 +14,12 @@ import pl.creazy.creazylib.command.constraints.Args;
 import pl.creazy.creazylib.command.constraints.Command;
 import pl.creazy.creazylib.command.constraints.HasPermissions;
 import pl.creazy.creazylib.item.ItemManager;
+import pl.creazy.creazylib.part.constraints.Injected;
 import pl.creazy.creazylib.part.constraints.Part;
 
 @Command("item")
-@Part
 class ItemCommand implements TabCompleteHandler {
-  @Part
+  @Injected
   private ItemManager itemManager;
 
   @HasPermissions("creazylib.item.get")

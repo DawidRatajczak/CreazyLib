@@ -1,18 +1,17 @@
 package pl.creazy.creazylib.item;
 
-import static java.lang.String.format;
+import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import pl.creazy.creazylib.manager.constraints.Manager;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import static java.lang.String.format;
 
-import pl.creazy.creazylib.part.constraints.Part;
-
-@Part
+@Manager
 public class ItemManager {
   private final Map<String, ItemStack> items = new HashMap<>();
 
