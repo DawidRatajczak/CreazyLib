@@ -11,9 +11,14 @@ import pl.creazy.creazylib.part.PartManager;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
 import pl.creazy.creazylib.plugin.constraints.Plugin;
 
+/*
+ * Creazy Lib - A proprietary Minecraft plugin library.
+ * Copyright (c) 2024 Creazy.
+ * Use is permitted under the Creazy Lib License.
+ */
 @Getter
 @Plugin
-public class CreazyLib extends CreazyPlugin implements Listener {
+public final class CreazyLib extends CreazyPlugin implements Listener {
   public static final String NAME = "CreazyLib";
 
   private final PartManager partManager = new PartManager();

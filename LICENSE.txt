@@ -1,0 +1,4 @@
+MIT License
+
+Author: Dawid Ratajczak
+Copyright (c) 2024 Creazy
