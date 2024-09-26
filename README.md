@@ -1,6 +1,6 @@
 # Creazy Lib
 
-![Docs](https://lib.creazy.pl)
+[Docs](https://lib.creazy.pl)
 
 # Latest version: 1.2-SNAPSHOT
 
