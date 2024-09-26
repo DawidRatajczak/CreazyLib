@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 import pl.creazy.creazylib.CreazyLib;
 import pl.creazy.creazylib.util.text.Text;
@@ -11,6 +12,9 @@ import pl.creazy.creazylib.util.text.Text;
 import java.util.Objects;
 
 public interface PlayerMenu {
+  static boolean isMenu(@NotNull Inventory inventory) {
+    return inventory.getHolder() instanceof MenuHolder;
+  }
   static void open(@NotNull Class<? extends PlayerMenu> type, @NotNull Player player) {
     open(type, player, 0);
   }
