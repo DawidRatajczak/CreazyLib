@@ -21,5 +21,4 @@ class PlayerInteractListener implements Listener {
       action.handle(event);
     }
   }
-
 }

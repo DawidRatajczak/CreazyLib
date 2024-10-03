@@ -16,6 +16,7 @@ public class ItemActionManager extends ActionManagerBase<ItemAction<?>> {
   private final Map<Id, ItemEntityDeathAction> entityDeathActions = new HashMap<>();
   private final Map<Id, ItemEntityDamageAction> entityDamageActions = new HashMap<>();
   private final Map<Id, ItemBlockBreakAction> blockBreakActions = new HashMap<>();
+  private final Map<Id, ItemBowHitAction> bowHitActions = new HashMap<>();
 
   public void registerItemAction(@NotNull ItemAction<?> itemAction) {
     if (itemAction instanceof ItemClickAction clickAction) {
@@ -33,6 +34,13 @@ public class ItemActionManager extends ActionManagerBase<ItemAction<?>> {
     if (itemAction instanceof ItemBlockBreakAction blockBreakAction) {
       registerAction(blockBreakAction, blockBreakActions);
     }
+    if (itemAction instanceof ItemBowHitAction bowHitAction) {
+      registerAction(bowHitAction, bowHitActions);
+    }
+  }
+
+  public @Nullable ItemBowHitAction getItemBowHitAction(@Nullable Id id) {
+    return getAction(id, bowHitActions);
   }
 
   @Nullable
