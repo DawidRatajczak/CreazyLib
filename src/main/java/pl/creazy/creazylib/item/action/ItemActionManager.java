@@ -16,7 +16,8 @@ public class ItemActionManager extends ActionManagerBase<ItemAction<?>> {
   private final Map<Id, ItemEntityDeathAction> entityDeathActions = new HashMap<>();
   private final Map<Id, ItemEntityDamageAction> entityDamageActions = new HashMap<>();
   private final Map<Id, ItemBlockBreakAction> blockBreakActions = new HashMap<>();
-  private final Map<Id, ItemBowHitAction> bowHitActions = new HashMap<>();
+  private final Map<Id, ItemProjectileHitAction> projectileHitActions = new HashMap<>();
+  private final Map<Id, ItemLaunchAction> launchActions = new HashMap<>();
 
   public void registerItemAction(@NotNull ItemAction<?> itemAction) {
     if (itemAction instanceof ItemClickAction clickAction) {
@@ -34,13 +35,20 @@ public class ItemActionManager extends ActionManagerBase<ItemAction<?>> {
     if (itemAction instanceof ItemBlockBreakAction blockBreakAction) {
       registerAction(blockBreakAction, blockBreakActions);
     }
-    if (itemAction instanceof ItemBowHitAction bowHitAction) {
-      registerAction(bowHitAction, bowHitActions);
+    if (itemAction instanceof ItemProjectileHitAction bowHitAction) {
+      registerAction(bowHitAction, projectileHitActions);
+    }
+    if (itemAction instanceof ItemLaunchAction itemLaunchAction) {
+      registerAction(itemLaunchAction, launchActions);
     }
   }
 
-  public @Nullable ItemBowHitAction getItemBowHitAction(@Nullable Id id) {
-    return getAction(id, bowHitActions);
+  public @Nullable ItemLaunchAction getItemLaunchAction(@Nullable Id id) {
+    return getAction(id, launchActions);
+  }
+
+  public @Nullable ItemProjectileHitAction getItemBowHitAction(@Nullable Id id) {
+    return getAction(id, projectileHitActions);
   }
 
   @Nullable
