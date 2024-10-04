@@ -5,11 +5,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
-import pl.creazy.creazylib.listener.constraints.EventListener;
+import pl.creazy.creazylib.listener.constraints.EventHandlers;
 import pl.creazy.creazylib.part.constraints.Injected;
 import pl.creazy.creazylib.recipe.RecipeManager;
 
-@EventListener
+@EventHandlers
 class PrepareItemCraftListener implements Listener {
   @Injected
   private RecipeManager recipeManager;

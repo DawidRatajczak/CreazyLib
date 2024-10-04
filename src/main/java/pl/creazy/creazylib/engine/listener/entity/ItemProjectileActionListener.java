@@ -8,14 +8,14 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import pl.creazy.creazylib.id.Id;
 import pl.creazy.creazylib.item.action.ItemActionManager;
-import pl.creazy.creazylib.listener.constraints.EventListener;
+import pl.creazy.creazylib.listener.constraints.EventHandlers;
 import pl.creazy.creazylib.part.constraints.Injected;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@EventListener
+@EventHandlers
 class ItemProjectileActionListener implements Listener {
   @Injected
   private ItemActionManager itemActionManager;

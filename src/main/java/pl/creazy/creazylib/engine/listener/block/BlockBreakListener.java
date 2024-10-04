@@ -5,10 +5,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import pl.creazy.creazylib.id.Id;
 import pl.creazy.creazylib.item.action.ItemActionManager;
-import pl.creazy.creazylib.listener.constraints.EventListener;
+import pl.creazy.creazylib.listener.constraints.EventHandlers;
 import pl.creazy.creazylib.part.constraints.Injected;
 
-@EventListener
+@EventHandlers
 public class BlockBreakListener implements Listener {
   @Injected
   private ItemActionManager itemActionManager;

@@ -6,9 +6,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import pl.creazy.creazylib.id.Id;
 import pl.creazy.creazylib.item.action.ItemActionManager;
-import pl.creazy.creazylib.listener.constraints.EventListener;
+import pl.creazy.creazylib.listener.constraints.EventHandlers;
 
-@EventListener
+@EventHandlers
 @SuppressWarnings("ALL")
 class EntityDamageByEntityListener implements Listener {
   private ItemActionManager itemActionManager;

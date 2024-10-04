@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 @Part
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface EventListener {
+public @interface EventHandlers {
 }
