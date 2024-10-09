@@ -7,9 +7,11 @@ import pl.creazy.creazylib.item.constraints.Items;
 import pl.creazy.creazylib.log.Logger;
 import pl.creazy.creazylib.part.PartCreateHandler;
 import pl.creazy.creazylib.part.PartManager;
+import pl.creazy.creazylib.part.PartOptions;
 import pl.creazy.creazylib.part.constraints.Handler;
 import pl.creazy.creazylib.part.constraints.Injected;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
+import pl.creazy.creazylib.util.text.Text;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -26,7 +28,7 @@ public class ItemLoader implements PartCreateHandler {
   private Logger logger;
 
   @Override
-  public void onPartCreate(Object part, PartManager partManager, CreazyPlugin plugin) {
+  public void onPartCreate(Object part, PartManager partManager, CreazyPlugin plugin, PartOptions options) {
     if (!part.getClass().isAnnotationPresent(Items.class)) {
       return;
     }
@@ -36,12 +38,10 @@ public class ItemLoader implements PartCreateHandler {
         try {
           field.setAccessible(true);
           var item = (ItemStack) field.get(part);
-          if (addItem.value().isEmpty()) {
-            itemManager.addItem(field.getName(), item);
-            logger.info("Added item: ".concat(field.getName()));
-          } else {
-            itemManager.addItem(addItem.value(), item);
-            logger.info("Added item: ".concat(addItem.value()));
+          var name = Text.orElse(addItem.value(), field.getName());
+          itemManager.addItem(name, item);
+          if (options.shouldLog()) {
+            logger.success("Added item ".concat(name).concat("."));
           }
         } catch (IllegalAccessException | IllegalArgumentException exception) {
           throw new RuntimeException(
@@ -55,12 +55,10 @@ public class ItemLoader implements PartCreateHandler {
         try {
           method.setAccessible(true);
           var item = (ItemStack) method.invoke(part);
-          if (addItem.value().isEmpty()) {
-            itemManager.addItem(method.getName(), item);
-            logger.info("Added item: ".concat(method.getName()));
-          } else {
-            itemManager.addItem(addItem.value(), item);
-            logger.info("Added item: ".concat(addItem.value()));
+          var name = Text.orElse(addItem.value(), method.getName());
+          itemManager.addItem(name, item);
+          if (options.shouldLog()) {
+            logger.success("Added item ".concat(name).concat("."));
           }
         } catch (InvocationTargetException | IllegalAccessException exception) {
           throw new RuntimeException(

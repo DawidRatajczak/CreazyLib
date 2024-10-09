@@ -1,14 +1,15 @@
 package pl.creazy.creazylib.part;
 
-import static java.lang.String.format;
-
-import java.util.LinkedList;
-import java.util.stream.Collectors;
-import org.jetbrains.annotations.NotNull;
 import lombok.AllArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import pl.creazy.creazylib.part.handler.ConfigFileLoader;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
 import pl.creazy.creazylib.plugin.constraints.Plugin;
+
+import java.util.LinkedList;
+import java.util.stream.Collectors;
+
+import static java.lang.String.format;
 
 @AllArgsConstructor
 public class PartLoader {
@@ -30,14 +31,19 @@ public class PartLoader {
     }
     createdParts.forEach(partManager::addPart);
     connector.connectParts(createdParts);
-    createdParts.forEach(part -> configFileLoader.onPartCreate(part, partManager, plugin));
+    createdParts.forEach(part -> {
+      var options = new PartOptions(part.getClass());
+      configFileLoader.onPartCreate(part, partManager, plugin, options);
+    });
     createdParts.forEach(onEnableInvoker::invokeAllMethods);
 
     partManager.getPartCreateHandlers().forEach(handler -> {
       createdParts.forEach(part -> {
-        handler.onPartCreate(part, partManager, plugin);
+        var options = new PartOptions(part.getClass());
+        handler.onPartCreate(part, partManager, plugin, options);
       });
-    });;
+    });
+    ;
 
     plugin.getLogger().info(format("Loaded %s", plugin.getName()));
   }

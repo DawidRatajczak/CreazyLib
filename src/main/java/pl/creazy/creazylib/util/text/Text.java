@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
+import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
 
 import net.md_5.bungee.api.ChatColor;
@@ -39,6 +40,20 @@ public class Text {
   public static @NotNull String hash(@NotNull String text) {
     var digest = MessageDigest.getInstance("SHA-256");
     return new BigInteger(digest.digest(text.getBytes())).toString(16);
+  }
+
+  public static @NotNull String getPrettyClassName(@NotNull Class<?> type) {
+    var name = type.getName();
+    var lastIndex = name.lastIndexOf('.');
+    return name.substring(lastIndex + 1);
+  }
+
+  public static @NotNull String pretty(@NotNull NamespacedKey key) {
+    return key.getNamespace().concat(":").concat(key.getKey());
+  }
+
+  public static @NotNull String orElse(@NotNull String textOr, @NotNull String textElse) {
+    return textOr.isBlank() ? textElse : textOr;
   }
 
   public static @NotNull String path(@NotNull String path) {

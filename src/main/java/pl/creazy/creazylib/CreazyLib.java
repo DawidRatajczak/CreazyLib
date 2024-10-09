@@ -7,7 +7,9 @@ import org.jetbrains.annotations.NotNull;
 
 import lombok.Getter;
 import pl.creazy.creazylib.event.CreazyLibRequestEvent;
+import pl.creazy.creazylib.listener.constraints.EventHandlers;
 import pl.creazy.creazylib.part.PartManager;
+import pl.creazy.creazylib.part.constraints.OnEnable;
 import pl.creazy.creazylib.plugin.CreazyPlugin;
 import pl.creazy.creazylib.plugin.constraints.Plugin;
 
@@ -26,6 +28,11 @@ public final class CreazyLib extends CreazyPlugin implements Listener {
   @EventHandler
   void onEvent(CreazyLibRequestEvent event) {
     event.setPlugin(this);
+  }
+
+  @OnEnable
+  private void registerEventHandler() {
+    getServer().getPluginManager().registerEvents(this, this);
   }
 
   @NotNull
