@@ -1,6 +1,11 @@
 package pl.creazy.creazylib.item;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -8,6 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.google.gson.annotations.Since;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -17,10 +23,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ColorableArmorMeta;
-import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.EnchantmentStorageMeta;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.*;
 import org.bukkit.inventory.meta.components.FoodComponent;
 import org.bukkit.inventory.meta.components.ToolComponent;
 import org.jetbrains.annotations.NotNull;
@@ -68,6 +71,25 @@ public class ItemBuilder {
   public @NotNull ItemBuilder setColor(@NotNull Color color) {
     if (meta instanceof ColorableArmorMeta colorableArmorMeta) {
       colorableArmorMeta.setColor(color);
+    }
+    return this;
+  }
+
+  public @NotNull ItemBuilder setHead(String texture) {
+    try {
+      return setHead(new URI("https://textures.minecraft.net/texture/".concat(texture)).toURL());
+    } catch (MalformedURLException | URISyntaxException exception) {
+      throw new RuntimeException("Failed to fetch texture ".concat(texture).concat(" from textures.minecraft.net"), exception);
+    }
+  }
+
+  public @NotNull ItemBuilder setHead(URL url) {
+    if (meta instanceof SkullMeta skullMeta) {
+      var profile = Bukkit.createPlayerProfile(UUID.randomUUID());
+      var textures = profile.getTextures();
+      textures.setSkin(url);
+      profile.setTextures(textures);
+      skullMeta.setOwnerProfile(profile);
     }
     return this;
   }
