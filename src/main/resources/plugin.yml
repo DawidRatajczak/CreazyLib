@@ -1,5 +1,5 @@
 name: CreazyLib
-version: '1.0-SNAPSHOT'
+version: '1.4-SNAPSHOT'
 main: pl.creazy.creazylib.CreazyLib
 api-version: '1.21'
 authors: [Dawid Ratajczak]
@@ -9,5 +9,5 @@ commands:
     description: get items
   economy:
     description: manage economy
-  test:
-    description: test command
+  head:
+    description: give heads
