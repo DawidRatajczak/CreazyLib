@@ -1,6 +1,6 @@
 # Creazy Lib [Docs](https://lib.creazy.pl)
 
-# Latest version: 1.2-SNAPSHOT
+# Latest version: 1.4-SNAPSHOT
 
 # Repository:
 ### Maven
