@@ -23,14 +23,16 @@ maven {
 <dependency>
   <groupId>pl.creazy</groupId>
   <artifactId>CreazyLib</artifactId>
-  <version>1.3-SNAPSHOT</version>
+  <version>1.4-SNAPSHOT</version>
 </dependency>
 ```
 ### Gradle
 ```groovy
-compileOnly "pl.creazy:CreazyLib:1.3-SNAPSHOT"
+compileOnly "pl.creazy:CreazyLib:1.4-SNAPSHOT"
 ```
 
 # Other versions:
-- 1.0-SNAPSHOT <u>NOT STABLE</u>
+- 1.3-SNAPSHOT
+- 1.2-SNAPSHOT
 - 1.1-SNAPSHOT <u>NOT STABLE</u>
+- 1.0-SNAPSHOT <u>NOT STABLE</u>
